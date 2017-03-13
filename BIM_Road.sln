@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BCG_GUI", "BCG_GUI\BCG_GUI.vcxproj", "{51E9BEB4-9796-4012-9D5E-0F05C517744D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OSGBIM", "COSGObject\COSGObject.vcxproj", "{0F94E68C-F01F-48F6-A1BD-643AF6622A7C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BIM_GUI", "BIM_GUI\BIM_GUI.vcxproj", "{0D1A3969-BB8C-44C6-B0C6-FBDE6347C924}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E8D9C63-8A15-42DC-A294-36D551F54E73} = {7E8D9C63-8A15-42DC-A294-36D551F54E73}
+		{0F94E68C-F01F-48F6-A1BD-643AF6622A7C} = {0F94E68C-F01F-48F6-A1BD-643AF6622A7C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RouteCross", "RouteCross\RouteCross.vcxproj", "{7E8D9C63-8A15-42DC-A294-36D551F54E73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E9BEB4-9796-4012-9D5E-0F05C517744D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51E9BEB4-9796-4012-9D5E-0F05C517744D}.Debug|Win32.Build.0 = Debug|Win32
+		{51E9BEB4-9796-4012-9D5E-0F05C517744D}.Release|Win32.ActiveCfg = Release|Win32
+		{51E9BEB4-9796-4012-9D5E-0F05C517744D}.Release|Win32.Build.0 = Release|Win32
+		{0F94E68C-F01F-48F6-A1BD-643AF6622A7C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0F94E68C-F01F-48F6-A1BD-643AF6622A7C}.Debug|Win32.Build.0 = Debug|Win32
+		{0F94E68C-F01F-48F6-A1BD-643AF6622A7C}.Release|Win32.ActiveCfg = Release|Win32
+		{0F94E68C-F01F-48F6-A1BD-643AF6622A7C}.Release|Win32.Build.0 = Release|Win32
+		{0D1A3969-BB8C-44C6-B0C6-FBDE6347C924}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0D1A3969-BB8C-44C6-B0C6-FBDE6347C924}.Debug|Win32.Build.0 = Debug|Win32
+		{0D1A3969-BB8C-44C6-B0C6-FBDE6347C924}.Release|Win32.ActiveCfg = Release|Win32
+		{0D1A3969-BB8C-44C6-B0C6-FBDE6347C924}.Release|Win32.Build.0 = Release|Win32
+		{7E8D9C63-8A15-42DC-A294-36D551F54E73}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7E8D9C63-8A15-42DC-A294-36D551F54E73}.Debug|Win32.Build.0 = Debug|Win32
+		{7E8D9C63-8A15-42DC-A294-36D551F54E73}.Release|Win32.ActiveCfg = Release|Win32
+		{7E8D9C63-8A15-42DC-A294-36D551F54E73}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
