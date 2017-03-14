@@ -9,6 +9,7 @@ public:
 	osg::Group* GetRoot(){ return root; };
 	osg::ref_ptr<osg::Vec3Array> GetPoints(){ return points; }
 	CGL_Callback* GetUpdateCallBack(){ return _callback; }
+	float GetZ(float x);
 private:
 	osg::Group *root;
 	CGL_Callback *_callback;

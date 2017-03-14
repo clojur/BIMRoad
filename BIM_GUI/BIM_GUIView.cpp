@@ -7,7 +7,7 @@
 #include "BIM_GUIDoc.h"
 #include "BIM_GUIView.h"
 
-#include "../include/RouteCross/RouteCross.h"
+#include "../include/SceneNode/SceneNode.h"
 #include "../include/OSGBIM/OSGBIM.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -132,13 +132,16 @@ int CBIM_GUIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// TODO:  在此添加您专用的创建代码
 
-	CRoadSurfaceLine *RSL=new CRoadSurfaceLine;
+	SceneNode *Sn=new SceneNode;
 	theApp.GetViewManager()->AddView(m_hWnd);
 	theApp.GetViewManager()->RemoveAllNode(m_hWnd);
 	//theApp.GetViewManager()->RemoveAllHandle(m_hWnd);
-	theApp.GetViewManager()->SetSceneData(m_hWnd, RSL->GetUpdateCallBack());
+	theApp.GetViewManager()->SetSceneData(m_hWnd, Sn->GetRoot());
 	//theApp.GetViewManager()->getView(m_hWnd)->setCameraManipulator(new Contrl2DManipulator(RSL->GetUpdateCallBack()->GetModel()));
 	theApp.GetViewManager()->Display(m_hWnd);
+	osg::ref_ptr<osgViewer::View> _view = theApp.GetViewManager()->getView(m_hWnd);
+	//osg::ref_ptr<osgGA::GUIEventAdapter> dummyEvent =_view->getEventQueue()->createEvent();
+	//_view->getCameraManipulator()->home(*dummyEvent, *_view);
 
 	return 0;
 }

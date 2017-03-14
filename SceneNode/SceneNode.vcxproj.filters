@@ -18,21 +18,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundLine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadSurfaceLine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Slope.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RouteCross.h">
+    <ClInclude Include="SceneNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -47,26 +41,17 @@
     <ClInclude Include="macro.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GroundLine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RoadSurfaceLine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Slope.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RouteCross.def">
+    <None Include="SceneNode.def">
       <Filter>源文件</Filter>
     </None>
-    <None Include="res\RouteCross.rc2">
+    <None Include="res\SceneNode.rc2">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RouteCross.rc">
+    <ResourceCompile Include="SceneNode.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
