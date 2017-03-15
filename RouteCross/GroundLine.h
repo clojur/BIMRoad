@@ -8,6 +8,7 @@ public:
 	~CGroundLine();
 	osg::Group* GetRoot(){ return root; };
 	osg::ref_ptr<osg::Vec3Array> GetPoints(){ return points; }
+	void CalcVertices();
 	CGL_Callback* GetUpdateCallBack(){ return _callback; }
 	float GetZ(float x);
 private:

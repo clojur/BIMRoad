@@ -26,6 +26,9 @@ public:
 	void CalcLeftSlope();
 	void CalcRightSlope();
 	~CSlope();
+	CSlope_Callback* GetUpdateCallBack(){ return _callback; }
+	osg::Group* GetRoot(){ return root; }
+	void CalcTwoLineInsectPoint(double tempX, double tempZ, double groundX, double groundZ);
 public:
 	CGroundLine *m_GL;
 	CRoadSurfaceLine *m_RSL;
@@ -34,6 +37,7 @@ public:
 	double m_Left_RSLToGLDistance;
 	double m_Right_RSLToGLDistance;
 	SlopeStruce m_Slopemem;
+private:
 	CSlope_Callback *_callback;
 	osg::Group* root;
 };
@@ -42,8 +46,11 @@ class CSlope_Callback :public CComponentCallback
 {
 public:
 	CSlope_Callback(CSlope *slp):
-		m_slp(slp), CComponentCallback(slp->root)
-		{}
+		 CComponentCallback(slp->GetRoot()),
+		 m_slp(slp)
+		{
+	
+	}
 	~CSlope_Callback(){}
 	virtual void DoUpdate() override;
 private:

@@ -10,6 +10,7 @@ public:
 public:
 	osg::ref_ptr<osg::Vec3Array> GetPointArray(){ return pointArray; }
 	osg::Group* GetRoot(){ return root; }
+	void CalcVertices();
 	CRSF_Callback* GetUpdateCallBack(){ return _callback; }
 
 private:

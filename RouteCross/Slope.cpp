@@ -15,10 +15,11 @@ m_Slopemem(Slopemem)
 {
 	m_Lpoints = new osg::Vec3Array;
 	m_Rpoints = new osg::Vec3Array;
-	root = new osg::Group;
+	root = new osg::Group; 
+	//CalcLeftSlope();
+	//CalcRightSlope();
 	_callback=new CSlope_Callback(this);
-	CalcLeftSlope();
-	CalcRightSlope();
+	
 }
 
 CSlope::~CSlope()
@@ -35,35 +36,42 @@ void CSlope::CalcLeftSlope()
 	{
 		osg::Vec3 L_endPoint;
 		//可能要另外开线程优化
-		double deltaL =0.0f ;
-		double deltaH = 0.0f;
-		double groundX = m_Lpoints->at(0).x();
-		double groundZ = m_Lpoints->at(0).z();
+		double currentX = m_Lpoints->at(0).x();
+		double currentZ = m_Lpoints->at(0).z();
+		double deltaZ=0.1f;
+		double oldZ = 0.1f;
+		double oldX = 0.1f;
 		bool ms = m_Left_RSLToGLDistance<0.00001f&&m_Left_RSLToGLDistance>-0.00001f;
-		double range;
+		double range=5.0f;
 		while (!ms)
 		{
-			deltaL += 0.1;
-			deltaH = m_Slopemem.m_Lgradient*deltaL;
-			groundX -= deltaL;
+			currentX -= 0.5f;
 			if (m_Left_RSLToGLDistance > 0.0f)
-				groundZ -= deltaH;
+				currentZ -= 0.5*m_Slopemem.m_Lgradient;
 			else
-				groundZ += deltaH;
+				currentZ += 0.5*m_Slopemem.m_Lgradient;
 
-			range = abs(groundZ - m_GL->GetZ(groundX));
-			if (range <= 0.001f)
+			if (deltaZ*(currentZ - m_GL->GetZ(currentX)) > 0.0f)
 			{
-				m_Lpoints->push_back(osg::Vec3(groundX, 0.0f, groundZ));
+				oldX = currentX;
+				oldZ = currentZ;
+				deltaZ = currentZ - m_GL->GetZ(currentX);
+				continue;
+			}
+			else
+			{
+				CalcTwoLineInsectPoint(oldX, oldZ, currentX, currentZ);
 				break;
 			}
+			
 		}
 	}
 	else
 	{
 		
 	}
-	
+
+
 }
 
 void CSlope::CalcRightSlope()
@@ -73,12 +81,29 @@ void CSlope::CalcRightSlope()
 	osg::Vec3 R_endPoint;
 }
 
+void CSlope::CalcTwoLineInsectPoint(double x1, double z1, double x2, double z2)
+{
+	double b1 = z2- z1;
+	double c1 = x2 - x1;
+
+	double b2 = m_GL->GetZ(x2) - m_GL->GetZ(x1);
+	double c2 = x2 - x1;
+	double x3 = x1;
+	double z3 = m_GL->GetZ(x3);
+
+	double xL = ((b1 / c1)*x1) - ((b2 / c2)*x3) - z1 + z3;
+	double x = xL / ((b1 / c1) - (b2 / c2));
+	double z = m_GL->GetZ(x);
+	m_Lpoints->push_back(osg::Vec3(x, 0.0f, z));
+}
+
 void CSlope_Callback::DoUpdate()
 {
+	m_slp->CalcLeftSlope();
 	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
 	osg::ref_ptr<osg::Geometry> gm = new osg::Geometry;
 	osg::ref_ptr<osg::Vec4Array> colors = new osg::Vec4Array;
-	colors->push_back(osg::Vec4(0.0f,0.0f,1.0f,1.0f));
+	colors->push_back(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
 	gm->setVertexArray(m_slp->m_Lpoints);
 	gm->setColorArray(colors, osg::Array::BIND_OVERALL);
 	gm->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::LINES,0,m_slp->m_Lpoints->size()));
