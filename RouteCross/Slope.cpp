@@ -38,9 +38,10 @@ void CSlope::CalcLeftSlope()
 		//可能要另外开线程优化
 		double currentX = m_Lpoints->at(0).x();
 		double currentZ = m_Lpoints->at(0).z();
-		double deltaZ=0.1f;
 		double oldZ = 0.1f;
 		double oldX = 0.1f;
+		double CurrentDeltaZ=0.1f;
+		double OldDeltaZ = 0.1f;
 		bool ms = m_Left_RSLToGLDistance<0.00001f&&m_Left_RSLToGLDistance>-0.00001f;
 		double range=5.0f;
 		while (!ms)
@@ -51,11 +52,12 @@ void CSlope::CalcLeftSlope()
 			else
 				currentZ += 0.5*m_Slopemem.m_Lgradient;
 
-			if (deltaZ*(currentZ - m_GL->GetZ(currentX)) > 0.0f)
+			CurrentDeltaZ = (currentZ - m_GL->GetZ(currentX));
+			if (CurrentDeltaZ*OldDeltaZ> 0.0f)
 			{
 				oldX = currentX;
 				oldZ = currentZ;
-				deltaZ = currentZ - m_GL->GetZ(currentX);
+				OldDeltaZ = currentZ - m_GL->GetZ(currentX);
 				continue;
 			}
 			else
