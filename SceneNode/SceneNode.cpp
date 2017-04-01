@@ -15,6 +15,12 @@ SceneNode::SceneNode()
 	slopeS = { 0 };
 	slopeS.m_Lgradient = 0.8f;
 	slopeS.m_LIsZhi = true;
+
+	slopeS.m_Rgradient = 0.86;
+	slopeS.m_Rheight = 4.0;
+	slopeS.m_RstepLength = 2.0f;
+	slopeS.m_RIsZhi = false;
+
 	m_sp = new CSlope(m_RSL, m_GL, slopeS);
 	
 	m_root->addChild(m_GL->GetUpdateCallBack()->getRoot());

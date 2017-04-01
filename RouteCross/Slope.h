@@ -20,15 +20,22 @@ public:
 		bool m_LIsZhi;
 		bool m_RIsZhi;
 	};
+	enum class SlopePos{
+		LEFT,RIGHT
+	};
 public:
 	CSlope();
 	CSlope(CRoadSurfaceLine* RSL, CGroundLine* GL,SlopeStruce Slopemem);
-	void CalcLeftSlope();
-	void CalcRightSlope();
 	~CSlope();
 	CSlope_Callback* GetUpdateCallBack(){ return _callback; }
 	osg::Group* GetRoot(){ return root; }
-	void CalcTwoLineInsectPoint(double tempX, double tempZ, double groundX, double groundZ);
+
+	/*±ßÆÂ¼ÆËã*/
+	void CalcLeftSlope();
+	void CalcRightSlope();
+	osg::Vec3 CalcTwoLineInsectPoint(double tempX, double tempZ, double groundX, double groundZ);
+	void CalcZhi(SlopePos slopePos,osg::ref_ptr<osg::Vec3Array> points,double RtoD_distance,double gradient);
+	void CalcTong(SlopePos slopePos, osg::ref_ptr<osg::Vec3Array> points, double RtoD_distance, double gradient, double slope_height);
 public:
 	CGroundLine *m_GL;
 	CRoadSurfaceLine *m_RSL;

@@ -134,7 +134,7 @@ int CBIM_GUIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	SceneNode *Sn=new SceneNode;
 	theApp.GetViewManager()->AddView(m_hWnd);
-	theApp.GetViewManager()->RemoveAllNode(m_hWnd);
+	//theApp.GetViewManager()->RemoveAllNode(m_hWnd);
 	//theApp.GetViewManager()->RemoveAllHandle(m_hWnd);
 	theApp.GetViewManager()->SetSceneData(m_hWnd, Sn->GetRoot());
 	//theApp.GetViewManager()->getView(m_hWnd)->setCameraManipulator(new Contrl2DManipulator(RSL->GetUpdateCallBack()->GetModel()));
